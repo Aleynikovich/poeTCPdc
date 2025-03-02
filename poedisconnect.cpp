@@ -24,18 +24,41 @@ DWORD GetPoEProcessID() {
 
     if (Process32FirstW(hSnap, &pe)) {
         do {
-            if (wcscmp(pe.szExeFile, L"PathOfExileSteam.exe") == 0) {  
-                pid = pe.th32ProcessID;
-                break;
-            }
+            if ((wcscmp(pe.szExeFile, L"PathOfExileSteam.exe")      == 0) || 
+                (wcscmp(pe.szExeFile, L"PathOfExile_x64Steam.exe")  == 0) || 
+                (wcscmp(pe.szExeFile, L"PathOfExile.exe")           == 0) || 
+                (wcscmp(pe.szExeFile, L"PathOfExile_x64.exe")       == 0))
+                    {  
+                        pid = pe.th32ProcessID;
+                        break;
+                    }
         } while (Process32NextW(hSnap, &pe));
     }
     CloseHandle(hSnap);
     return pid;
 }
 
+
+// Function to check if PoE is the active (foreground) window
+bool IsPoEActive() {
+    DWORD pid = GetPoEProcessID();
+    if (!pid) return false;
+
+    HWND foregroundWindow = GetForegroundWindow();
+    DWORD foregroundPid = 0;
+    GetWindowThreadProcessId(foregroundWindow, &foregroundPid);
+
+    return (foregroundPid == pid);
+}
+
 // Function to close PoE's TCP connection
 void ClosePoETcpConnection() {
+
+    if (!IsPoEActive()) {
+        std::cout << "PoE is NOT in the foreground. Ignoring disconnect request.\n";
+        return;
+    }
+
     DWORD pid = GetPoEProcessID();
     if (!pid) {
         std::cerr << "PoE process not found!\n";
