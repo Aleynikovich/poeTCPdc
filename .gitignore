@@ -1,0 +1,22 @@
+# Compiled executables
+*.exe
+*.obj
+*.o
+
+# Build artifacts
+*.lib
+*.a
+*.dll
+
+# IDE and editor files
+*.swp
+*.swo
+*~
+.vscode/
+.vs/
+*.suo
+*.user
+
+# Temporary files
+*.tmp
+*.log
