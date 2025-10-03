@@ -1,6 +1,6 @@
 # Path of Exile TCP Disconnect Tool
 
-A lightweight Windows utility that allows you to quickly disconnect from Path of Exile game servers by pressing a mouse button. This tool is useful for situations where you need to immediately disconnect from the game, such as avoiding death in hardcore mode or escaping dangerous encounters.
+A lightweight Windows utility that allows you to quickly disconnect from Path of Exile game servers by pressing a configurable keyboard key or mouse button. This tool is useful for situations where you need to immediately disconnect from the game, such as avoiding death in hardcore mode or escaping dangerous encounters.
 
 ## Features
 
