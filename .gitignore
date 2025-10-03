@@ -1,0 +1,12 @@
+# Configuration file (user-specific)
+poedisconnect_config.txt
+
+# Build artifacts
+*.exe
+*.obj
+*.o
+
+# IDE files
+*.suo
+*.user
+.vs/
